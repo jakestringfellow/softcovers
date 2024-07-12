@@ -1,1 +1,1 @@
-# softcovers
+# Softcovers - Online Bookstore
