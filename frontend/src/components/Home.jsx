@@ -14,7 +14,8 @@ const Home = () => {
 
     return (
         <div>
-            <h2>Book List</h2>
+            <h1>Softcovers - Online Bookstore</h1>
+            <h2>Featured</h2>
             <ul>
                 {books.map(book=> (
                     <li key={book.id}>{book.title} by {book.author}</li>
