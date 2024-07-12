@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 const PORT = 3000;
 
-console.log('Starting server...');
+console.log('Starting server....');
 
 app.get('/', (req, res) => {
     res.send('Softcovers server');
