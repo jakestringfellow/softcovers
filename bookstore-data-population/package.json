@@ -1,0 +1,15 @@
+{
+  "name": "bookstore-data-population",
+  "version": "1.0.0",
+  "description": "",
+  "main": "populate-db.js",
+  "scripts": {
+    "start": "node populate-db.js"
+  },
+  "dependencies": {
+    "mongoose": "^6.0.0",
+    "@faker-js/faker": "^7.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
