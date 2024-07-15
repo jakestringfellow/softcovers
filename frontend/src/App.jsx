@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Home from './components/Home';
+import BookDetail from './components/BookDetail';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/books/:id" element={<BookDetail/>} />
           </Routes>
         </div>
       </Router>
