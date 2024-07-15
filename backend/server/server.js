@@ -1,5 +1,7 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
+import Book from './books/book.js';
 
 const app = express();
 const PORT = 3000;
@@ -7,24 +9,39 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Example book objects to test
-let books = [
-    { id: 1, title: 'A Game of Thrones', author: 'George R. R. Martin', price: 30.00, genre: ['Fiction', 'Fantasy'] },
-    { id: 2, title: 'A Storm of Swords', author: 'George R. R. Martin', price: 32.00, genre: ['Fiction', 'Fantasy']},
-    { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', price: 33.00, genre: ['Fiction', 'Fantasy']}
-]
+const mongoURI = 'mongodb://localhost:27017/Softcovers'
+// let books = [
+//     { id: 1, title: 'A Game of Thrones', author: 'George R. R. Martin', price: 30.00, genre: ['Fiction', 'Fantasy'] },
+//     { id: 2, title: 'A Storm of Swords', author: 'George R. R. Martin', price: 32.00, genre: ['Fiction', 'Fantasy']},
+//     { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', price: 33.00, genre: ['Fiction', 'Fantasy']}
+// ]
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to MongoDB Atlas Data Federation');
+}).catch(err => {
+    console.error('Error connecting to MongoDB:', err.message);
+})
 
-app.get('/api/books', (req, res) => {
-    res.json(books);
+app.get('/api/books', async (req, res) => {
+    try {
+        const books = await Book.find();
+        res.json(books);
+    } catch (error) {
+        res.status(500).json({message: error.messsage});
+    }
+    // res.json(books);
+
 });
 
-app.get('/api/books/:id', (req, res) => {
-    const bookId = parseInt(req.params.id);
-    const book = books.find(b => b.id === bookId);
-    if (book) {
+app.get('/api/books/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) throw new Error('Book not found');
         res.json(book);
-    } else{
-        res.status(404).send('Book not found');
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 });
 
