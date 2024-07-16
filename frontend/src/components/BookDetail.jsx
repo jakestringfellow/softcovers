@@ -1,18 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getBookById } from '../services/books-service';
-import { Container, Card, Button } from 'react-bootstrap';
+import { Container, Card, Button, Col } from 'react-bootstrap';
 
-// const getBookById = async (id) => {
-//     const response = await axios.get(`https://openlibrary.org/works/${id}.json`);
-//     return {
-//         id: response.data.key,
-//         title: response.data.title,
-//         description: response.data.description ? response.data.description.value: 'No description available.',
-//         covers: response.data.covers,
-//         authors: response.data.authors
-//     };
-// };
 
 function BookDetail() {
     const { id } = useParams();
@@ -41,24 +31,29 @@ function BookDetail() {
         <>
             <Container className="my-4">
                 <Card>
-                    <Card.Body>
+                    <div className="row">
+                        <div className="col-2">
+                        <Card.Img variant="left" className="img-fluid" src={book.imageUrl} />
+
+                        </div>
+                        <div className="col-8">
+                        <Card.Body>
                         <Card.Title>{book.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Genre: {book.category}</Card.Subtitle>
                         <Card.Text>Description: {book.description}</Card.Text>
+                        <Card.Text>Price: ${book.price}.00</Card.Text>
                         <Button variant="primary">Add to Cart</Button>
                     </Card.Body>
+                        </div>
+                    </div>
+                    
+                    
                 </Card>
             </Container>
         
         </>
-        // <div className="book-detail">
-        //     <h2>{book.title}</h2>
-        //     <p>Author: {book.author}</p>
-        //     <p>Price: ${book.price}</p>
-        //     <p>Genre {book.genre.join(', ')}</p>
-        //     <p>Description: {book.descriptoin}</p>
-        //     <button>Add to Cart</button>
-        // </div>
+       
     );
 }
 

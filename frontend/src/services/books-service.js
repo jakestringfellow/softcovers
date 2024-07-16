@@ -3,7 +3,6 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3000/api';
 
 export const getBooks = async (page =1, limit = 10) => {
-    // const response = await axios.get(`${API_URL}/books`);
     const response = await axios.get(`${API_URL}/books?page=${page}&limit=${limit}`);
     return response.data;
 };

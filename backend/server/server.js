@@ -10,11 +10,13 @@ app.use(cors());
 app.use(express.json());
 
 const mongoURI = 'mongodb://localhost:27017/Softcovers'
+
 // let books = [
 //     { id: 1, title: 'A Game of Thrones', author: 'George R. R. Martin', price: 30.00, genre: ['Fiction', 'Fantasy'] },
 //     { id: 2, title: 'A Storm of Swords', author: 'George R. R. Martin', price: 32.00, genre: ['Fiction', 'Fantasy']},
 //     { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', price: 33.00, genre: ['Fiction', 'Fantasy']}
 // ]
+
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -31,7 +33,6 @@ app.get('/api/books', async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.messsage});
     }
-    // res.json(books);
 
 });
 

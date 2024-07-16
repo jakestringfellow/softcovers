@@ -18,15 +18,14 @@ const SearchResults = () => {
         const fetchBooks = async () => {
             try {
                 const result = await getBooks(1, 100);
-                const filteredBooks = result //.books.filter(book =>
-                    // book.title.toLowerCase().includes(query.toLowerCase()) ||
-                    // book.author.toLowerCase().includes(query.toLowerCase())
+                const filteredBooks = result
                     ? result.filter(book =>
                         book.title.toLowerCase().includes(query.toLowerCase()) ||
-                        book.author.toLowerCase().includes(query.toLowerCase())
+                        book.author.toLowerCase().includes(query.toLowerCase()) ||
+                        book.category.toLowerCase().includes(query.toLowerCase())
                     )
                     : [];
-                //);
+                
                 setBooks(filteredBooks);
             } catch (error) {
                 console.error('Error fetching books:', error);

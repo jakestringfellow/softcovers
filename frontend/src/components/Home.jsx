@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getFeaturedBooks } from '../services/books-service';
 import BookCard from './BookCard';
 import { Link, useNavigate } from 'react-router-dom';
-// import { searchBooks } from '../services/books-service';
 import { Container, Row, Col, Form, FormControl } from 'react-bootstrap';
 
 const Home = () => {
@@ -11,19 +10,13 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleSearch = async (e) => {
-        // setSearchTerm(e.target.value);
         setSearchTerm(e.target.value);
-        // if (e.target.value.length > 1) {
-        //     const results = await searchBooks(e.target.value);
-        //     setBooks(results);
-        // } else {
-        //     setBooks([]);
-        // }
+        
     }
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        if (searchTerm.trim()) {
+        if (searchTerm) {
             navigate(`/search?q=${searchTerm}`);
         }
     }
@@ -54,12 +47,7 @@ const Home = () => {
                     onChange={handleSearch}
                 />
             </Form>
-            {/* <input
-                type="text"
-                placeholder="Search for books..."
-                value={searchTerm}
-                onChange={handleSearch}
-            /> */}
+            
             <h2 className="mb-4">Featured Books</h2>
             {/* Categories will go here */}
             <Row>
@@ -73,20 +61,7 @@ const Home = () => {
                 ))}
 
             </Row>
-            {/* <div className="book-list">
-                {filteredBooks.map((book) => (
-                    <Link to={`/books/${book.id}`} key={book.id}>
-                        <BookCard book={book} />
-                    </Link>
-
-                ))}
-                
-            </div> */}
-            {/* <ul>
-                {books.map(book=> (
-                    <li key={book.id}>{book.title} by {book.author}</li>
-                ))}
-            </ul> */}
+            
         </Container>
     )
 }
