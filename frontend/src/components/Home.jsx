@@ -57,7 +57,7 @@ const Home = () => {
             <Row>
                 {books.map((book) => (
                     <Col key={book.i} sm={12} md={6} lg={4} className="mb-4">
-                        <Link to={`/books/${book.id}`} key={book.id}>
+                        <Link to={`/books/${book._id}`} key={book._id}>
                             <BookCard book={book} />
                         </Link>
                     </Col>

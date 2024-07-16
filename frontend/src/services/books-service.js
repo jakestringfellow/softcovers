@@ -7,8 +7,8 @@ export const getBooks = async () => {
     return response.data;
 };
 
-export const getBookById = async (id) => {
-    const response = await axios.get(`${API_URL}/books/${id}`);
+export const getBookById = async (_id) => {
+    const response = await axios.get(`${API_URL}/books/${_id}`);
     return response.data;
 }
 
