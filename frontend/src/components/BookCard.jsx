@@ -17,6 +17,7 @@ function BookCard({ book }) {
                 <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
                 <Card.Text>Genre: {book.category}</Card.Text>
                 <Card.Text>Description: {book.description}</Card.Text>
+                <Card.Text>${book.price}.00</Card.Text>
             </Card.Body>
         </Card>
     )

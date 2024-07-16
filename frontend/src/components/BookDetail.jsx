@@ -39,7 +39,7 @@ function BookDetail() {
 
     return (
         <>
-            <Container classNam="my-4">
+            <Container className="my-4">
                 <Card>
                     <Card.Body>
                         <Card.Title>{book.title}</Card.Title>

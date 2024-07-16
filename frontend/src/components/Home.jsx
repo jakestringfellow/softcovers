@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { getBooks } from '../services/books-service';
+import { getFeaturedBooks } from '../services/books-service';
 import BookCard from './BookCard';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { searchBooks } from '../services/books-service';
 import { Container, Row, Col, Form, FormControl } from 'react-bootstrap';
 
 const Home = () => {
-    const [books, setBooks] = useState([]);
+    const [featuredBooks, setFeaturedBooks] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
     const handleSearch = async (e) => {
         // setSearchTerm(e.target.value);
@@ -20,17 +21,24 @@ const Home = () => {
         // }
     }
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            navigate(`/search?q=${searchTerm}`);
+        }
+    }
+
     useEffect(() => {
-        const fetchBooks = async () => {
-            const books = await getBooks();
-            setBooks(books);
+        const fetchFeaturedBooks = async () => {
+            const response = await getFeaturedBooks();
+            setFeaturedBooks(response);
         };
-        fetchBooks();
+        fetchFeaturedBooks();
     }, []);
 
 
 
-    const filteredBooks = books.filter(book =>
+    const filteredBooks = featuredBooks.filter(book =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.author.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -38,7 +46,7 @@ const Home = () => {
     return (
         <Container>
             <h1 className="my-4">Softcovers - Online Bookstore</h1>
-            <Form className="mb-4">
+            <Form className="mb-4" onSubmit={handleSearchSubmit}>
                 <FormControl
                     type="text"
                     placeholder="Search for books..."
@@ -55,8 +63,8 @@ const Home = () => {
             <h2 className="mb-4">Featured Books</h2>
             {/* Categories will go here */}
             <Row>
-                {books.map((book) => (
-                    <Col key={book.i} sm={12} md={6} lg={4} className="mb-4">
+                {featuredBooks.map((book) => (
+                    <Col key={book._id} sm={12} md={6} lg={4} className="mb-4">
                         <Link to={`/books/${book._id}`} key={book._id}>
                             <BookCard book={book} />
                         </Link>

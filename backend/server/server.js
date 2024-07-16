@@ -51,6 +51,16 @@ app.get('/', (req, res) => {
     res.send('Softcovers server');
 });
 
+app.get('/api/featured-books', async (req, res) => {
+    try {
+        const featuredBooks = await Book.find().limit(6);
+        res.json(featuredBooks);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
 app.listen(PORT, (err) => {
     if (err) {
         console.error('Failed to start server:', err);
