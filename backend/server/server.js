@@ -9,7 +9,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = 'mongodb://localhost:27017/Softcovers'
+const mongoURI = 'mongodb+srv://temp-user:scarab@cluster0.czlhhst.mongodb.net/softcovers'
+
 
 // let books = [
 //     { id: 1, title: 'A Game of Thrones', author: 'George R. R. Martin', price: 30.00, genre: ['Fiction', 'Fantasy'] },

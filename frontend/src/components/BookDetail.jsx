@@ -33,7 +33,7 @@ function BookDetail() {
                 <Card>
                     <div className="row">
                         <div className="col-2">
-                        <Card.Img variant="left" className="img-fluid" src={book.imageUrl} />
+                        <Card.Img variant="left" className="img-fluid" src={book.image_url} />
 
                         </div>
                         <div className="col-8">
@@ -42,7 +42,7 @@ function BookDetail() {
                         <Card.Subtitle className="mb-2 text-muted">Author: {book.author}</Card.Subtitle>
                         <Card.Subtitle className="mb-2 text-muted">Genre: {book.category}</Card.Subtitle>
                         <Card.Text>Description: {book.description}</Card.Text>
-                        <Card.Text>Price: ${book.price}.00</Card.Text>
+                        <Card.Text>Price: ${book.price}</Card.Text>
                         <Button variant="primary">Add to Cart</Button>
                     </Card.Body>
                         </div>
