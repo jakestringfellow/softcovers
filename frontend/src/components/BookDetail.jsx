@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getBookById } from '../services/books-service';
 import { Container, Card, Button, Col } from 'react-bootstrap';
+import { useCart } from './CartContext';
 
 
 function BookDetail() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { dispatch } = useCart();
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -23,6 +25,10 @@ function BookDetail() {
         };
         fetchBook();
     }, [id]);
+
+    const addToCart = () => {
+        dispatch({ type: 'ADD_TO_CART', book });
+    };
 
     if (loading) return <div>Loading...</div>;
     if (!book) return <div>Book not found</div>;
@@ -43,7 +49,7 @@ function BookDetail() {
                         <Card.Subtitle className="mb-2 text-muted">Genre: {book.category}</Card.Subtitle>
                         <Card.Text>Description: {book.description}</Card.Text>
                         <Card.Text>Price: ${book.price}</Card.Text>
-                        <Button variant="primary">Add to Cart</Button>
+                        <Button variant="primary" onClick={addToCart}>Add to Cart</Button>
                     </Card.Body>
                         </div>
                     </div>

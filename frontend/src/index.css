@@ -20,3 +20,20 @@
   margin-top: 1em;
   text-align: center;
 }
+
+.cart-icon {
+  color: white;
+  font-size: 1.5rem; /* Adjust size if needed */
+  margin-right: 0.5rem;
+}
+
+.badge-secondary {
+  margin-left: 0.5rem;
+}
+
+body, html {
+  background-color: #97a291 !important; /* Light gray */
+  margin: 0; /* Remove default margin */
+  height: 100%; /* Ensure the background color covers the full height */
+  width: 100%; /* Ensure the background color covers the full width */
+}
